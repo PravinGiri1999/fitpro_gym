@@ -58,7 +58,6 @@ Here’s an overview of the database structure:
 The following queries were created to solve specific business questions. Each query is designed to provide insights based on gym membership and visit data.
 
 1. Retrieve the **name** and **membership_type** of female members.
-   
 '''sql
 SELECT 
 m.name,
