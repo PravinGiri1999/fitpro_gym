@@ -58,6 +58,15 @@ Here’s an overview of the database structure:
 The following queries were created to solve specific business questions. Each query is designed to provide insights based on gym membership and visit data.
 
 1. Retrieve the **name** and **membership_type** of female members.
+'''sql
+SELECT 
+m.name,
+ms.membership_type
+FROM members as m
+INNER JOIN memberships as ms
+ON m.member_id=ms.member_id
+WHERE ms.gender='F';
+'''
 2. Find members who have a **Monthly membership** and joined after **2023-11-01**.
 3. List the **name** and **status** of active members over **25**.
 4. Get details of **visits** on a specific date (**2024-01-01**).
