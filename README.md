@@ -81,8 +81,27 @@ AND
 join_date > '2023-11-01';
  ```
 3. List the **name** and **status** of active members over **25**.
+   ```sql
+SELECT m.name, ms.status
+FROM members AS m
+INNER JOIN memberships AS ms
+ON m.member_id=ms.member_id
+WHERE status = 'Active' 
+AND
+age > 25;
+ ```
 4. Get details of **visits** on a specific date (**2024-01-01**).
+  ```sql
+SELECT * FROM visits
+WHERE visit_date = '2024-01-01';
+   ```
 5. List members with a **Quarterly membership** aged between **20 and 30**.
+```sql
+SELECT * FROM memberships
+WHERE membership_type = 'Quaterly'
+AND
+age BETWEEN 20 AND 30;
+```
 
 Additional aggregations and grouping:
 6. Count total visits made by each member.
