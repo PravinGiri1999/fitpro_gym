@@ -68,6 +68,18 @@ ON m.member_id=ms.member_id
 WHERE ms.gender='F';
 ```
 2. Find members who have a **Monthly membership** and joined after **2023-11-01**.
+ ```sql
+SELECT m.name,
+ms.membership_type,
+ms.join_date
+FROM members AS m
+INNER JOIN memberships AS ms
+ON m.member_id=ms.member_id
+WHERE 
+membership_type = 'Monthly'
+AND 
+join_date > '2023-11-01';
+ ```
 3. List the **name** and **status** of active members over **25**.
 4. Get details of **visits** on a specific date (**2024-01-01**).
 5. List members with a **Quarterly membership** aged between **20 and 30**.
