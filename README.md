@@ -105,10 +105,49 @@ age BETWEEN 20 AND 30;
 
 Additional aggregations and grouping:
 6. Count total visits made by each member.
+```sql
+SELECT 
+member_id,
+COUNT(visit_id) AS total_visits
+FROM visits
+GROUP BY member_id
+ORDER BY 1 ASC;
+```
 7. Count members by membership type (e.g., Monthly, Weekly, Quarterly).
+```sql
+SELECT 
+membership_type,
+COUNT(member_id) AS members
+FROM memberships
+GROUP BY membership_type;
+```
 8. Calculate the average age of members, grouped by membership type.
+```sql
+SELECT 
+membership_type,
+AVG(member_id) AS members_avg
+FROM memberships
+GROUP BY membership_type;
+```
 9. Total visits for each visit date.
+```sql
+SELECT 
+visit_date,
+COUNT(visit_id) AS total_visits
+FROM visits
+GROUP BY visit_date;
+```
 10. Count members by status (e.g., Active or Cancelled).
+```sql
+SELECT 
+status,
+COUNT(member_id) AS  members
+FROM memberships
+WHERE status = 'Active'
+OR
+status = 'Cancelled'
+GROUP BY status;
+```
 
 Advanced queries:
 11. Top 3 members with the highest visits.
