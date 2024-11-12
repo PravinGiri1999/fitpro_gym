@@ -104,6 +104,7 @@ age BETWEEN 20 AND 30;
 ```
 
 Additional aggregations and grouping:
+
 6. Count total visits made by each member.
 ```sql
 SELECT 
@@ -151,11 +152,61 @@ GROUP BY status;
 
 Advanced queries:
 11. Top 3 members with the highest visits.
+```sql
+SELECT 
+m.name,
+COUNT(v.visit_id) AS total_visits
+FROM visits AS v
+INNER JOIN members AS m
+ON v.member_id=m.member_id
+GROUP BY m.name
+HAVING COUNT(v.visit_id) > 0
+ORDER BY total_visits DESC
+LIMIT 3;
+```
 12. Active Monthly members grouped by membership type, sorted by recent join dates.
+```sql
+SELECT
+membership_type,
+COUNT(member_id) AS members
+FROM memberships
+WHERE status = 'Active'
+AND
+membership_type = 'Monthly'
+GROUP BY membership_type;
+```
 13. Members with more than 2 visits, sorted by total visits, displaying the top 5.
+```sql
+SELECT
+member_id,
+COUNT(visit_id) AS total_visits
+FROM visits
+GROUP BY member_id
+HAVING COUNT(visit_id) > 2
+ORDER BY total_visits ASC
+LIMIT 5;
+```
 14. Members who joined in 2023, grouped by membership type (where each group has >1 member).
+```sql
+SELECT 
+membership_type,
+COUNT(member_id) AS total_members
+FROM memberships
+WHERE EXTRACT(YEAR FROM join_date) = 2023
+GROUP BY membership_type
+HAVING COUNT(member_id) > 1;
+```
 15. Average age of active members, grouped by membership type, limited to the top 3 results.
-
+```sql
+SELECT 
+membership_type,
+AVG(age) AS avg_age
+FROM memberships
+WHERE status = 'Active'
+GROUP BY membership_type
+ORDER BY membership_type ASC
+LIMIT 3;
+```
 ---
 
 ## SQL Queries & Analysis
